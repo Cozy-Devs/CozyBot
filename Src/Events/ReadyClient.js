@@ -1,10 +1,11 @@
 const chalk = require("chalk")
 const Box = require("cli-box")
+const mongoose = require("mongoose")
 module.exports = {
     name: "ready",
     once: true,
     run: async(client) => {
-        client.user.setActivity('Cookies get baked.', {
+        client.user.setActivity('CozyDevs.', {
             type: `WATCHING`,
         })
         const ClientBox = new Box({
@@ -28,6 +29,7 @@ Client Details    ::    ${client.user.tag}
 Guilds Count      ::    ${client.guilds.cache.size}
 User Count        ::    ${client.users.cache.size}
 NodeJS Version    ::    ${process.version}
+MongoDB           ::    ${mongoose.connection.readyState.toString().replace("0", "Disconnected").replace("1", "Connected").replace("2", "Connecting").replace("3", "Disconnecting")}
 `).stringify()
 
         const CommandsBox = new Box({
