@@ -4,26 +4,26 @@ const mongoose = require("mongoose")
 module.exports = {
     name: "ready",
     once: true,
-    run: async(client) => {
+    run: async (client) => {
         client.user.setActivity('CozyDevs.', {
             type: `WATCHING`,
         })
         const ClientBox = new Box({
-            w: Math.floor(client.user.tag.length + 27 ),
+            w: Math.floor(client.user.tag.length + 27),
             h: 7,
             stringify: false,
             marks: {
-              nw: '╭',
-              n: '─',
-              ne: '╮',
-              e: '│',
-              se: '╯',
-              s: '─',
-              sw: '╰',
-              w: '│'
+                nw: '╭',
+                n: '─',
+                ne: '╮',
+                e: '│',
+                se: '╯',
+                s: '─',
+                sw: '╰',
+                w: '│'
             },
             hAlign: 'left',
-          }, `C L I E N T   I N F O R M A T I O N
+        }, `C L I E N T   I N F O R M A T I O N
 
 Client Details    ::    ${client.user.tag}
 Guilds Count      ::    ${client.guilds.cache.size}
@@ -60,5 +60,20 @@ Client Events              ::    Initiating ${client.events.size} events.
 
         console.log(chalk.bold.greenBright(ClientBox))
         console.log(chalk.bold.blueBright(CommandsBox))
+
+        //Automatic 30second git pull.
+        setInterval(() => {
+            exec(`git pull`, (error, stdout) => {
+                let response = (error || stdout);
+                if (!error) {
+                    if (!response.includes("Already up to date.")) {
+                        client.channels.cache.get('952637547023061012').send('**[AUTOMATIC]** \nNew update on GitHub. Pulling. \n\nLogs: \n```' + response + "```" + "\n\n\n**Restarting bot**")
+                        setTimeout(() => {
+                            process.exit();
+                        }, 1000)
+                    }
+                }
+            })
+        }, 30000)
     }
 }
