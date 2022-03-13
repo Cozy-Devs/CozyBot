@@ -2,6 +2,19 @@ module.exports = {
     name: "messageCreate",
     run: async(message, client, container) => {
         const loadCommandOptions = require("../Structures/CommandOptions/loadCommandOptions")
+
+        // Booster Script
+        if (message.channel.id == "952479734141423646") {
+            const embed = new container.Discord.MessageEmbed()
+            .setTimestamp()
+            .setTitle("<a:boost:952642975580700733> New Boost!")
+            .setDescription(`<a:boost:952642975580700733> **${message.author.tag}** (${message.author}) has just boosted the server! Thank you for boosting!`)
+            .setFooter({ text: "<3" })
+            message.channel.send({
+                embeds: [embed]
+            })
+        }
+
         container.Config.prefix.forEach(prefix => {
             if (!message.content.toLowerCase().startsWith(prefix)) return;
             const cmdName = message.content.toString().toLowerCase().slice(prefix.length).trim().split(" ")[0]
