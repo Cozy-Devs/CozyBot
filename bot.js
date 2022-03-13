@@ -1,5 +1,7 @@
 (async () => {
 const Discord = require("discord.js");
+const { DisTube } = require("distube");
+const mongoose = require("mongoose");
 const config = require("./Config");
 const path = __dirname;
 const client = new Discord.Client({
@@ -20,6 +22,20 @@ const client = new Discord.Client({
 });
 exports.client = client;
 exports.path = path;
+
+client.Distube = new DisTube(client, {
+    leaveOnEmpty: false, 
+    leaveOnFinish: false, 
+    leaveOnStop: false,
+    searchSongs: 10,
+    nsfw: true,
+    youtubeDL: false
+});
+await mongoose.connect(config.uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+
 exports.config = config;
 client.commands = {};
 client.events = new Discord.Collection();
