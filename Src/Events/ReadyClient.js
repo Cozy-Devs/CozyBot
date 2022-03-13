@@ -1,5 +1,6 @@
 const chalk = require("chalk")
 const Box = require("cli-box")
+const { exec } = require("child_process")
 const mongoose = require("mongoose")
 module.exports = {
     name: "ready",
