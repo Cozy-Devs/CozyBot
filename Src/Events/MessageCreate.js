@@ -4,7 +4,7 @@ module.exports = {
         const loadCommandOptions = require("../Structures/CommandOptions/loadCommandOptions")
 
         // Booster Script
-        if (message.channel.id == "952479734141423646") {
+        if (message.channel.id == "952479734141423646" && !message.author.bot) {
             const embed = new container.Discord.MessageEmbed()
             .setTimestamp()
             .setTitle("<a:boost:952642975580700733> New Boost!")
