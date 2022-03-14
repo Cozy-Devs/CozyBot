@@ -15,6 +15,13 @@ module.exports = {
             })
         }
 
+        // Suggestion Script
+        if (message.channel.id == "934351514707853314" && !message.author.bot) {
+            if (message.content.includes("@comment")) return;
+            message.react('<a:suggest_yes:861876314896859136>')
+            message.react('<a:suggest_no:861876395863834624>')
+        }
+
         container.Config.prefix.forEach(prefix => {
             if (!message.content.toLowerCase().startsWith(prefix)) return;
             const cmdName = message.content.toString().toLowerCase().slice(prefix.length).trim().split(" ")[0]
