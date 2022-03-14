@@ -4,6 +4,7 @@ module.exports = {
     run: async(client, interaction, container) => {
         const volume = interaction.options.getInteger("volume")
         const queue = client.Distube.getQueue(interaction.guild.id)
+        if (!queue) return interaction.reply({ content: "There is no music playing in this server." })
         if (volume < 0) return interaction.reply({ content: "You must provide volume greater than 0%", ephemeral: true })
         if (volume > 100) return interaction.reply({ content: "You must provide volume less than 100%", ephemeral: true })
         queue.setVolume(volume)

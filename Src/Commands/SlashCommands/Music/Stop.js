@@ -2,7 +2,9 @@ module.exports = {
     name: "stop",
     ignoreFile: true,
     run: async(client, interaction, container) => {
-        client.Distube.getQueue(interaction.guild.id).stop()
+        const queue = client.Distube.getQueue(interaction.guild.id)
+        if (!queue) return interaction.reply({ content: "There is no music playing in this server." })
+        queue.stop()
         const embed = new container.Discord.MessageEmbed()
         .setColor("RANDOM")
         .setFooter({
