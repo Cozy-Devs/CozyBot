@@ -32,8 +32,8 @@ module.exports = {
         let msg;
         const channel = interaction.guild.channels.cache.get("952826685630320700");
 
-        if (requestType === "add-bot") msg = `${interaction.user.tag} (${interaction.user}) has requested to add bot ${botId} (<@${botId}>) to this server.`;
-        else msg = `${interaction.user.tag} (${interaction.user}) has requested to remove bot ${botId} (<@${botId}>) from this server.`;
+        if (requestType === "add-bot") msg = `\`${interaction.user.tag}\` (${interaction.user}) has requested to add bot \`${botId}\` (<@${botId}>) to this server.`;
+        else msg = `\`${interaction.user.tag}\` (${interaction.user}) has requested to remove bot \`${botId}\` (<@${botId}>) from this server.`;
 
         const embed = new container.Discord.MessageEmbed()
             .setTitle("Bot Request")
