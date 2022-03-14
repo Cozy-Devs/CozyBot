@@ -76,5 +76,10 @@ Client Events              ::    Initiating ${client.events.size} events.
                 }
             })
         }, 30000)
+
+        // Notify on startup.
+        client.channels.cache.get("952637547023061012").send({
+            content: "Bot has successfully rebooted and is now back up."
+        })
     }
 }
